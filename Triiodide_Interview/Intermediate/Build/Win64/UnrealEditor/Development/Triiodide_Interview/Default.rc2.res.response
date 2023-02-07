@@ -64,5 +64,5 @@
 /DPROJECT_COPYRIGHT_STRING="Fill out your copyright notice in the Description page of Project Settings."
 /DPROJECT_PRODUCT_NAME="Third Person Game Template"
 /DPROJECT_PRODUCT_IDENTIFIER=Triiodide_Interview
-/fo "D:\Users\Caleb\Documents\GitHub\Triiodide_Interview\Intermediate\Build\Win64\UnrealEditor\Development\Triiodide_Interview\Default.rc2.res"
+/fo "D:\Users\Caleb\Documents\GitHub\Triiodide_Repo\Triiodide-Technical-Interview\Triiodide_Interview\Intermediate\Build\Win64\UnrealEditor\Development\Triiodide_Interview\Default.rc2.res"
 "..\Build\Windows\Resources\Default.rc2"
