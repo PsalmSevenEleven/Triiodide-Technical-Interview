@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 
-
+#include "Components/HierarchicalInstancedStaticMeshComponent.h"
 
 #include "CPP_MazeGenerator.generated.h"
 
@@ -24,6 +24,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		int MazeHeight;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<int> Maze;
 
 	//These are written to indicate places as opposed to values, 
@@ -43,6 +44,32 @@ public:
 	
 	int VisitedCells;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float GridSize;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float CeilingHeight;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UStaticMesh* MazeFloorMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UStaticMesh* MazeWallMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UStaticMesh* MazeCeilingMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UHierarchicalInstancedStaticMeshComponent* MazeFloors;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UHierarchicalInstancedStaticMeshComponent* MazeCeilings;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UHierarchicalInstancedStaticMeshComponent* MazeWalls;
+
+	
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -54,4 +81,6 @@ public:
 	bool InitMaze();
 
 	bool GenerateMaze();
+
+	bool BuildMeshes();
 };

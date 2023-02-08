@@ -7,15 +7,32 @@
 ACPP_MazeGenerator::ACPP_MazeGenerator()
 {
 	PrimaryActorTick.bCanEverTick = false;
+	PrimaryActorTick.bStartWithTickEnabled = false;
 
+	MazeFloors = CreateDefaultSubobject<UHierarchicalInstancedStaticMeshComponent>("Floor Meshes");
+	MazeFloors->SetStaticMesh(MazeFloorMesh);
+	MazeFloors->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	MazeFloors->SetupAttachment(RootComponent);
 
+	MazeWalls = CreateDefaultSubobject<UHierarchicalInstancedStaticMeshComponent>("Wall Meshes");
+	MazeWalls->SetStaticMesh(MazeWallMesh);
+	MazeWalls->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	MazeWalls->SetupAttachment(RootComponent);
+
+	MazeCeilings = CreateDefaultSubobject<UHierarchicalInstancedStaticMeshComponent>("Ceiling Meshes");
+	MazeCeilings->SetStaticMesh(MazeCeilingMesh);
+	MazeCeilings->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	MazeCeilings->SetupAttachment(RootComponent);
+
+	
+	
 }
 
 // Called when the game starts or when spawned
 void ACPP_MazeGenerator::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	BuildMeshes();
 }
 
 // Called every frame
@@ -44,7 +61,7 @@ bool ACPP_MazeGenerator::InitMaze()
 	//Initialize the array with an appropriate number of empty values
 	for (int i = 0; i< MazeWidth * MazeHeight; i++)
 	{
-		Maze[i] = 0x00;
+		Maze.Add(0x00);
 	}
 
 	//Add the first "cell" to the array as a starting point...
@@ -63,10 +80,12 @@ bool ACPP_MazeGenerator::InitMaze()
 //I've chosen to use the Recursive Back-Tracker algorithm 
 //for it's inherent scalability to 3 dimensions and relatively simple implementation
 
-//Here's an excellent explanation of how the algorithm works, as well as a straightforward C++ implementation (not Unreal, unfortunately)
+//Here's an excellent explanation of how the algorithm works, 
+//as well as a straightforward C++ implementation (not Unreal, unfortunately)
 // https://www.youtube.com/watch?v=Y37-gB83HKE
 bool ACPP_MazeGenerator::GenerateMaze()
 {
+	
 	//Check that we can build a maze from the given parameters (also performs required setup)
 	if (InitMaze())
 	{
@@ -87,8 +106,9 @@ bool ACPP_MazeGenerator::GenerateMaze()
 			//cell options
 			TArray<int> ValidNeighbors;
 
+
 			//Check northern neighbor
-			if (Stack.Top().Y > 0 && Maze[OffsetFunc(0, -1)] & VISITED == 0)
+			if (Stack.Top().Y > 0 && !(Maze[OffsetFunc(0, -1)] >> 4))
 			{
 				//If the cell in question meets the criteria, it gets added to ValidNeighbors, 
 				//from which a random value is chosen at the end of these checks
@@ -96,19 +116,19 @@ bool ACPP_MazeGenerator::GenerateMaze()
 			}
 
 			//Check southern neighbor
-			if (Stack.Top().Y > 0 && Maze[OffsetFunc(0, 1)] & VISITED == 0)
+			if (Stack.Top().Y < (MazeHeight - 1) && !(Maze[OffsetFunc(0, 1)] >> 4))
 			{
 				ValidNeighbors.Add(1);
 			}
 
 			//Check eastern neighbor
-			if (Stack.Top().Y > 0 && Maze[OffsetFunc(-1, 0)] & VISITED == 0)
+			if (Stack.Top().X > 0 && !(Maze[OffsetFunc(-1, 0)] >> 4))
 			{
 				ValidNeighbors.Add(2);
 			}
 
 			//Check western neighbor
-			if (Stack.Top().Y > 0 && Maze[OffsetFunc(1, 0)] & VISITED == 0)
+			if (Stack.Top().X < (MazeWidth - 1) && !(Maze[OffsetFunc(1, 0)] >> 4))
 			{
 				ValidNeighbors.Add(3);
 			}
@@ -198,4 +218,75 @@ bool ACPP_MazeGenerator::GenerateMaze()
 	//But if we couldn't build a maze from the given width and length, then return failure
 	return false;
 }
+
+bool ACPP_MazeGenerator::BuildMeshes()
+{
+	
+	if (GenerateMaze())
+	{
+		for (int i = 0; i < Maze.Num(); i++)
+		{
+			//Add in the floor
+			FVector MeshLocation = FVector((i % MazeWidth) * GridSize, (i / MazeWidth) * GridSize, 0);
+
+			FTransform MeshTransform = FTransform(FRotator(), MeshLocation, FVector(1));
+
+			MazeFloors->AddInstance(MeshTransform);
+
+
+			//Add in the ceiling
+			MeshLocation = FVector((i % MazeWidth) * GridSize, (i / MazeWidth) * GridSize, CeilingHeight);
+
+			MeshTransform = FTransform(FRotator(), MeshLocation, FVector(1));
+
+			MazeCeilings->AddInstance(MeshTransform);
+
+
+			//Add in any required southern walls
+			if (!(Maze[i] & PATH_SOUTH))
+			{
+				MeshLocation = FVector((i % MazeWidth) * GridSize, ((i / MazeWidth) * GridSize) + GridSize, 0);
+
+				MeshTransform = FTransform(FRotator(), MeshLocation, FVector(1));
+
+				MazeWalls->AddInstance(MeshTransform);
+			}
+
+			//Add in any required western walls
+			if (!(Maze[i] & PATH_WEST))
+			{
+				MeshLocation = FVector(((i % MazeWidth) * GridSize) + GridSize, ((i / MazeWidth) * GridSize) , 0);
+
+				MeshTransform = FTransform(FRotator(0, 90, 0), MeshLocation, FVector(1));
+
+				MazeWalls->AddInstance(MeshTransform);
+			}
+
+			if (i % MazeHeight == 0)
+			{
+				MeshLocation = FVector((i % MazeWidth) * GridSize, ((i / MazeWidth) * GridSize), 0);
+
+				MeshTransform = FTransform(FRotator(0, 90, 0), MeshLocation, FVector(1));
+
+				MazeWalls->AddInstance(MeshTransform);
+			}
+
+			if (i % MazeWidth == 0)
+			{
+				MeshLocation = FVector(((i / MazeWidth) * GridSize), ((i % MazeWidth) * GridSize), 0);
+
+				MeshTransform = FTransform(FRotator(), MeshLocation, FVector(1));
+
+				MazeWalls->AddInstance(MeshTransform);
+			}
+
+		}
+
+		return true;
+	}
+
+	return false;
+}
+
+
 
