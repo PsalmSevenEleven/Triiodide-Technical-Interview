@@ -3,11 +3,15 @@
 
 #include "CPP_MazeGenerator.h"
 
+#include "Net/UnrealNetwork.h"
+
 // Sets default values
 ACPP_MazeGenerator::ACPP_MazeGenerator()
 {
 	PrimaryActorTick.bCanEverTick = false;
 	PrimaryActorTick.bStartWithTickEnabled = false;
+
+	bReplicates = true;
 
 	MazeFloors = CreateDefaultSubobject<UHierarchicalInstancedStaticMeshComponent>("Floor Meshes");
 	MazeFloors->SetStaticMesh(MazeFloorMesh);
@@ -32,7 +36,13 @@ ACPP_MazeGenerator::ACPP_MazeGenerator()
 void ACPP_MazeGenerator::BeginPlay()
 {
 	Super::BeginPlay();
-	BuildMeshes();
+	
+	if (GetLocalRole() == ROLE_Authority)
+	{
+		
+		Seed = FMath::RandRange(1, 256);
+		BuildMeshes();
+	}
 }
 
 // Called every frame
@@ -70,6 +80,8 @@ bool ACPP_MazeGenerator::InitMaze()
 	Maze[0] = VISITED;
 	//... and set the number of visited cells to 1, because we start in a cell
 	VisitedCells = 1;
+
+	Stream = FRandomStream(Seed);
 
 	//Confirm that we can indeed generate a maze from these params
 	return true;
@@ -139,8 +151,11 @@ bool ACPP_MazeGenerator::GenerateMaze()
 				//Random index...
 				int RandIndex = FMath::RandRange(0, ValidNeighbors.Num() - 1);
 
+
+				
+
 				//...to choose a random direction.
-				int Direction = ValidNeighbors[RandIndex];
+				int Direction = ValidNeighbors[Stream.RandRange(0, ValidNeighbors.Num() - 1)];
 
 				//Now that we have our direction we can actually progress to the next cell, 
 				//which is what this last bit of logic does
@@ -286,6 +301,19 @@ bool ACPP_MazeGenerator::BuildMeshes()
 	}
 
 	return false;
+}
+
+void ACPP_MazeGenerator::OnRep_Seed()
+{
+
+	BuildMeshes();
+}
+
+void ACPP_MazeGenerator::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(ACPP_MazeGenerator, Seed);
 }
 
 

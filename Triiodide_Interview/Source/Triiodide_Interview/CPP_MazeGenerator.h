@@ -41,6 +41,7 @@ public:
 
 	
 	TArray<FVector2D> Stack;
+
 	
 	int VisitedCells;
 
@@ -70,6 +71,12 @@ public:
 
 	
 
+	UPROPERTY(ReplicatedUsing = OnRep_Seed)
+		int Seed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FRandomStream Stream;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -83,4 +90,9 @@ public:
 	bool GenerateMaze();
 
 	bool BuildMeshes();
+
+	UFUNCTION()
+	void OnRep_Seed();
+
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 };
