@@ -37,9 +37,11 @@ void ACPP_MazeGenerator::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	//If this maze generator is on the server, 
+	//then create a random seed, replicate it down to the clients, 
+	//and generate a maze with it
 	if (GetLocalRole() == ROLE_Authority)
 	{
-		
 		Seed = FMath::RandRange(1, 256);
 		BuildMeshes();
 	}
@@ -234,11 +236,14 @@ bool ACPP_MazeGenerator::GenerateMaze()
 	return false;
 }
 
+
+//Constructing the actual maze meshes (floors, walls, etc.) from the information compiled in GenerateMaze()
 bool ACPP_MazeGenerator::BuildMeshes()
 {
-	
+	//If we can successfully generate a maze...
 	if (GenerateMaze())
 	{
+		//...then for each cell in the maze array:
 		for (int i = 0; i < Maze.Num(); i++)
 		{
 			//Add in the floor
@@ -256,6 +261,20 @@ bool ACPP_MazeGenerator::BuildMeshes()
 
 			MazeCeilings->AddInstance(MeshTransform);
 
+
+			//Add in the lights
+			MeshLocation = FVector(((i % MazeWidth) * GridSize) + (GridSize / 2), ((i / MazeWidth) * GridSize) + (GridSize / 2), CeilingHeight);
+
+			MeshTransform = FTransform(FRotator(), MeshLocation - FVector(0,0,30), FVector(1));
+
+			FActorSpawnParameters SpawnInfo = FActorSpawnParameters();
+
+			ACPP_EnvironmentLight* NewLight = GetWorld()->SpawnActor<ACPP_EnvironmentLight>(LightClass, MeshTransform, SpawnInfo);
+
+			NewLight->LightIntensity *=  FMath::PerlinNoise2D(FVector2D(MeshLocation.X * DarknessScale + 0.1, MeshLocation.Y * DarknessScale + 0.1));
+			NewLight->Light->SetIntensity(NewLight->LightIntensity);
+
+			GEngine->AddOnScreenDebugMessage(-1, 30, FColor::Orange, FString::SanitizeFloat(NewLight->LightIntensity));
 
 			//Add in any required southern walls
 			if (!(Maze[i] & PATH_SOUTH))
@@ -277,6 +296,13 @@ bool ACPP_MazeGenerator::BuildMeshes()
 				MazeWalls->AddInstance(MeshTransform);
 			}
 
+			//The reason we consider only southern and western walls is that if we 
+			//were to also build northern and eastern walls, 
+			//there would be dozens of duplicates, as for any cell that is not connected to its neighbor
+			//its neighbor is also not connected to it
+
+
+			//Now generate the northern and eastern edge walls that were missed by the earlier section
 			if (i % MazeHeight == 0)
 			{
 				MeshLocation = FVector((i % MazeWidth) * GridSize, ((i / MazeWidth) * GridSize), 0);
@@ -303,12 +329,13 @@ bool ACPP_MazeGenerator::BuildMeshes()
 	return false;
 }
 
+//Called by clients when Seed changes on the server.
 void ACPP_MazeGenerator::OnRep_Seed()
 {
-
 	BuildMeshes();
 }
 
+//The only thing that needs to be replicated is the seed, and only once as the level begins
 void ACPP_MazeGenerator::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);

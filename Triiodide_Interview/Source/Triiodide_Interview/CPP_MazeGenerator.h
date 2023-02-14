@@ -7,6 +7,8 @@
 
 #include "Components/HierarchicalInstancedStaticMeshComponent.h"
 
+#include "CPP_EnvironmentLight.h"
+
 #include "CPP_MazeGenerator.generated.h"
 
 UCLASS()
@@ -25,6 +27,15 @@ public:
 		int MazeHeight;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float ClaustrophobiaScale;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float DarknessScale;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float FlickerScale;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<int> Maze;
 
 	//These are written to indicate places as opposed to values, 
@@ -39,18 +50,22 @@ public:
 		VISITED = 0x10,
 	};
 
-	
+	//The stack of cells used in the generation algorithm
 	TArray<FVector2D> Stack;
 
-	
+	//Number of "visited" cells for exiting the while loop
 	int VisitedCells;
 
+	//actual distance between cells, should be set based on floor tile size
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float GridSize;
 
+	//It's the height... of the ceiling. Should be set based on the height of wall models
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float CeilingHeight;
 
+
+	//The actual mesh references to be used when building the maze
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UStaticMesh* MazeFloorMesh;
 
@@ -61,6 +76,10 @@ public:
 		UStaticMesh* MazeCeilingMesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TSubclassOf<ACPP_EnvironmentLight> LightClass;
+
+	//The Heirarchical Instanced Static Mesh component that handles the meshes in the world
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UHierarchicalInstancedStaticMeshComponent* MazeFloors;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -70,10 +89,12 @@ public:
 		UHierarchicalInstancedStaticMeshComponent* MazeWalls;
 
 	
-
+	//The seed used in the maze generation
 	UPROPERTY(ReplicatedUsing = OnRep_Seed)
 		int Seed;
 
+	//Random stream which seeded by Seed, 
+	//actually referenced in determining random directions to move during maze generator algorithm
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FRandomStream Stream;
 

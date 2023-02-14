@@ -38,6 +38,12 @@
     <Filter Include="Source\Triiodide_Interview">
       <UniqueIdentifier>{82F1B080-32E4-3ACC-8905-B839B1B203DE}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Triiodide_Interview\CPP_EnvironmentLight.cpp">
+      <Filter>Source\Triiodide_Interview</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Triiodide_Interview\CPP_EnvironmentLight.h">
+      <Filter>Source\Triiodide_Interview</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Triiodide_Interview\CPP_MazeCell.cpp">
       <Filter>Source\Triiodide_Interview</Filter>
     </ClCompile>
