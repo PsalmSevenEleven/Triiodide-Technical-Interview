@@ -17,18 +17,23 @@ public:
 	// Sets default values for this actor's properties
 	ACPP_EnvironmentLight();
 
+	//The actual point light
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UPointLightComponent* Light;
 
+	//The intensity of the light, used in the flicker
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float LightIntensity;
 
+	//The time between flicker checks
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float FlickerCheckTime;
 
+	//This is multiplied by LightIntensity to determine how dark the flicker should go
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float FlickerMinMultiplier;
 
+	//How likely a light is to flicker, on a 0 to 1 scale
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float FlickerChance;
 
@@ -40,14 +45,17 @@ protected:
 	
 
 public:	
-	// Called every frame
+	// Unnecessary
 	virtual void Tick(float DeltaTime) override;
 
+	//Try to flicker
 	void FlickerCheck();
 
+	//Blueprint native event for easier customizability
 	UFUNCTION(BlueprintImplementableEvent)
 	void Flicker();
 
+	//Start the timer to check for a flicker
 	UFUNCTION(BlueprintCallable)
 		void StartFlickerCheckTimer();
 

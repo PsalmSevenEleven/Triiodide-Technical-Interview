@@ -262,35 +262,75 @@ bool ACPP_MazeGenerator::BuildMeshes()
 			MazeCeilings->AddInstance(MeshTransform);
 
 
-			//Add in the lights
+			//Add in the lights if the area is not set for darkness
 			MeshLocation = FVector(((i % MazeWidth) * GridSize) + (GridSize / 2), ((i / MazeWidth) * GridSize) + (GridSize / 2), CeilingHeight);
 
-			MeshTransform = FTransform(FRotator(), MeshLocation - FVector(0,0,30), FVector(1));
+			//If we manage to exceed the threshold for spawning a light...
+			if (Stream.FRandRange(-1, 1) > DarknessOffset + FMath::PerlinNoise2D(
+				FVector2D(
+					MeshLocation.X * DarknessScale + 0.1,
+					MeshLocation.Y * DarknessScale + 0.1)
+					)
+				)
+			{
+				//...then spawn the light.
+				MeshTransform = FTransform(FRotator(), MeshLocation - FVector(0, 0, 30), FVector(1));
 
-			FActorSpawnParameters SpawnInfo = FActorSpawnParameters();
+				FActorSpawnParameters SpawnInfo = FActorSpawnParameters();
 
-			ACPP_EnvironmentLight* NewLight = GetWorld()->SpawnActor<ACPP_EnvironmentLight>(LightClass, MeshTransform, SpawnInfo);
+				ACPP_EnvironmentLight* NewLight = GetWorld()->SpawnActor<ACPP_EnvironmentLight>(LightClass, MeshTransform, SpawnInfo);
 
-			NewLight->LightIntensity *=  FMath::PerlinNoise2D(FVector2D(MeshLocation.X * DarknessScale + 0.1, MeshLocation.Y * DarknessScale + 0.1));
-			NewLight->Light->SetIntensity(NewLight->LightIntensity);
 
-			GEngine->AddOnScreenDebugMessage(-1, 30, FColor::Orange, FString::SanitizeFloat(NewLight->LightIntensity));
+				//Determine the likelihood of the light you just spawned flickering
+				float FlickerModifier = DarknessOffset + FMath::PerlinNoise2D(FVector2D(MeshLocation.X * DarknessScale + 0.1, MeshLocation.Y * DarknessScale + 0.1));
+
+				//If the light would be more likely to flicker, then make it so
+				if (FlickerModifier > 0)
+				{
+					NewLight->FlickerChance += FlickerModifier;
+				}
+			}
+
 
 			//Add in any required southern walls
-			if (!(Maze[i] & PATH_SOUTH))
+			MeshLocation = FVector((i % MazeWidth) * GridSize, ((i / MazeWidth) * GridSize) + GridSize, 0);
+			
+			//If there is no path to the south and we don't exclude the wall due to low claustrophobia in the area,
+			//OR if the cell is in the final row,
+			
+			if (!(Maze[i] & PATH_SOUTH) 
+				&& Stream.FRandRange(-1,1) > ClaustrophobiaOffset + FMath::PerlinNoise2D(
+					FVector2D(
+						MeshLocation.X * ClaustrophobiaScale + 0.1,
+					MeshLocation.Y * ClaustrophobiaScale + 0.1
+						)
+					) 
+				|| (i / MazeWidth >= MazeHeight - 1)
+			)
 			{
-				MeshLocation = FVector((i % MazeWidth) * GridSize, ((i / MazeWidth) * GridSize) + GridSize, 0);
-
+				//then add the wall.
 				MeshTransform = FTransform(FRotator(), MeshLocation, FVector(1));
 
 				MazeWalls->AddInstance(MeshTransform);
 			}
 
-			//Add in any required western walls
-			if (!(Maze[i] & PATH_WEST))
-			{
-				MeshLocation = FVector(((i % MazeWidth) * GridSize) + GridSize, ((i / MazeWidth) * GridSize) , 0);
 
+			//Add in any required western walls
+			MeshLocation = FVector(((i % MazeWidth) * GridSize) + GridSize, ((i / MazeWidth) * GridSize), 0);
+
+			//If there is no path to the west and we don't exclude the wall due to low claustrophobia in the area,
+			//OR if the cell is in the final column,
+			if (!(Maze[i] & PATH_WEST) 
+				&& Stream.FRandRange(-1, 1) > ClaustrophobiaOffset + FMath::PerlinNoise2D(
+					FVector2D(
+						MeshLocation.X * ClaustrophobiaScale + 0.1, 
+						MeshLocation.Y * ClaustrophobiaScale + 0.1
+					)
+				)
+				|| (i % MazeWidth == MazeWidth - 1)
+			)
+			{
+				//then add the wall.
 				MeshTransform = FTransform(FRotator(0, 90, 0), MeshLocation, FVector(1));
 
 				MazeWalls->AddInstance(MeshTransform);
@@ -303,17 +343,22 @@ bool ACPP_MazeGenerator::BuildMeshes()
 
 
 			//Now generate the northern and eastern edge walls that were missed by the earlier section
+
+			//If the cell is in the first row,
 			if (i % MazeHeight == 0)
 			{
+				//then add the wall.
 				MeshLocation = FVector((i % MazeWidth) * GridSize, ((i / MazeWidth) * GridSize), 0);
 
 				MeshTransform = FTransform(FRotator(0, 90, 0), MeshLocation, FVector(1));
 
 				MazeWalls->AddInstance(MeshTransform);
 			}
-
+			
+			//If the cell is in the first column,
 			if (i % MazeWidth == 0)
 			{
+				//then add the wall.
 				MeshLocation = FVector(((i / MazeWidth) * GridSize), ((i % MazeWidth) * GridSize), 0);
 
 				MeshTransform = FTransform(FRotator(), MeshLocation, FVector(1));
@@ -323,13 +368,16 @@ bool ACPP_MazeGenerator::BuildMeshes()
 
 		}
 
+		//If we successfully generated a maze earlier, then we can return true
 		return true;
 	}
 
+	//But is there is no maze to generate, return false
 	return false;
 }
 
 //Called by clients when Seed changes on the server.
+//This allows the MazeGenerator to only build a maze after syncing up to the server's maze seed
 void ACPP_MazeGenerator::OnRep_Seed()
 {
 	BuildMeshes();

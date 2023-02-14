@@ -8,9 +8,11 @@
 // Sets default values
 ACPP_EnvironmentLight::ACPP_EnvironmentLight()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+ 	//Don't tick because we don't need it
+	PrimaryActorTick.bCanEverTick = false;
+	PrimaryActorTick.bStartWithTickEnabled = false;
 
+	//Create the point light component
 	Light = CreateDefaultSubobject<UPointLightComponent>("Light");
 	Light->SetupAttachment(RootComponent);
 
@@ -21,28 +23,34 @@ void ACPP_EnvironmentLight::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//Start the flicker loop
 	StartFlickerCheckTimer();
 }
 
-// Called every frame
+//Compiler gets mad if I delete it, so here it is
 void ACPP_EnvironmentLight::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
 
+
+//Called every FlickerCheckTime seconds, to see if the light should flicker
 void ACPP_EnvironmentLight::FlickerCheck()
 {
+	//If we randomly return true, then flicker the light
 	if (UKismetMathLibrary::RandomBoolWithWeight(FlickerChance))
 	{
 		Flicker();
 	}
+	//Otherwise, reset the check timer
 	else
 	{
 		StartFlickerCheckTimer();
 	}
 }
 
+//Starts the flicker check timer with a random delay to keep the lights from blinking in unison
 void ACPP_EnvironmentLight::StartFlickerCheckTimer()
 {
 	FTimerHandle Handle = FTimerHandle();

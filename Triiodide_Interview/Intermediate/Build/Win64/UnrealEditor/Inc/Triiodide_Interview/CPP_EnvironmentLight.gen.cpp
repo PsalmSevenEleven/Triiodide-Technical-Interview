@@ -44,7 +44,9 @@ void EmptyLinkFunctionForGeneratedCodeCPP_EnvironmentLight() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACPP_EnvironmentLight_Flicker_Statics::Function_MetaDataParams[] = {
+		{ "Comment", "//Blueprint native event for easier customizability\n" },
 		{ "ModuleRelativePath", "CPP_EnvironmentLight.h" },
+		{ "ToolTip", "Blueprint native event for easier customizability" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACPP_EnvironmentLight_Flicker_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACPP_EnvironmentLight, nullptr, "Flicker", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08020800, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACPP_EnvironmentLight_Flicker_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACPP_EnvironmentLight_Flicker_Statics::Function_MetaDataParams)) };
@@ -66,7 +68,9 @@ void EmptyLinkFunctionForGeneratedCodeCPP_EnvironmentLight() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACPP_EnvironmentLight_StartFlickerCheckTimer_Statics::Function_MetaDataParams[] = {
+		{ "Comment", "//Start the timer to check for a flicker\n" },
 		{ "ModuleRelativePath", "CPP_EnvironmentLight.h" },
+		{ "ToolTip", "Start the timer to check for a flicker" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACPP_EnvironmentLight_StartFlickerCheckTimer_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACPP_EnvironmentLight, nullptr, "StartFlickerCheckTimer", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACPP_EnvironmentLight_StartFlickerCheckTimer_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACPP_EnvironmentLight_StartFlickerCheckTimer_Statics::Function_MetaDataParams)) };
@@ -120,8 +124,8 @@ void EmptyLinkFunctionForGeneratedCodeCPP_EnvironmentLight() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_Triiodide_Interview,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ACPP_EnvironmentLight_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_ACPP_EnvironmentLight_Flicker, "Flicker" }, // 1662975029
-		{ &Z_Construct_UFunction_ACPP_EnvironmentLight_StartFlickerCheckTimer, "StartFlickerCheckTimer" }, // 2798728250
+		{ &Z_Construct_UFunction_ACPP_EnvironmentLight_Flicker, "Flicker" }, // 1632450880
+		{ &Z_Construct_UFunction_ACPP_EnvironmentLight_StartFlickerCheckTimer, "StartFlickerCheckTimer" }, // 1545531180
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACPP_EnvironmentLight_Statics::Class_MetaDataParams[] = {
@@ -132,36 +136,46 @@ void EmptyLinkFunctionForGeneratedCodeCPP_EnvironmentLight() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_Light_MetaData[] = {
 		{ "Category", "CPP_EnvironmentLight" },
+		{ "Comment", "//The actual point light\n" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "CPP_EnvironmentLight.h" },
+		{ "ToolTip", "The actual point light" },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_Light = { "Light", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPP_EnvironmentLight, Light), Z_Construct_UClass_UPointLightComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_Light_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_Light_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_LightIntensity_MetaData[] = {
 		{ "Category", "CPP_EnvironmentLight" },
+		{ "Comment", "//The intensity of the light, used in the flicker\n" },
 		{ "ModuleRelativePath", "CPP_EnvironmentLight.h" },
+		{ "ToolTip", "The intensity of the light, used in the flicker" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_LightIntensity = { "LightIntensity", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPP_EnvironmentLight, LightIntensity), METADATA_PARAMS(Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_LightIntensity_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_LightIntensity_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_FlickerCheckTime_MetaData[] = {
 		{ "Category", "CPP_EnvironmentLight" },
+		{ "Comment", "//The time between flicker checks\n" },
 		{ "ModuleRelativePath", "CPP_EnvironmentLight.h" },
+		{ "ToolTip", "The time between flicker checks" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_FlickerCheckTime = { "FlickerCheckTime", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPP_EnvironmentLight, FlickerCheckTime), METADATA_PARAMS(Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_FlickerCheckTime_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_FlickerCheckTime_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_FlickerMinMultiplier_MetaData[] = {
 		{ "Category", "CPP_EnvironmentLight" },
+		{ "Comment", "//This is multiplied by LightIntensity to determine how dark the flicker should go\n" },
 		{ "ModuleRelativePath", "CPP_EnvironmentLight.h" },
+		{ "ToolTip", "This is multiplied by LightIntensity to determine how dark the flicker should go" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_FlickerMinMultiplier = { "FlickerMinMultiplier", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPP_EnvironmentLight, FlickerMinMultiplier), METADATA_PARAMS(Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_FlickerMinMultiplier_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_FlickerMinMultiplier_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_FlickerChance_MetaData[] = {
 		{ "Category", "CPP_EnvironmentLight" },
+		{ "Comment", "//How likely a light is to flicker, on a 0 to 1 scale\n" },
 		{ "ModuleRelativePath", "CPP_EnvironmentLight.h" },
+		{ "ToolTip", "How likely a light is to flicker, on a 0 to 1 scale" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_FlickerChance = { "FlickerChance", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPP_EnvironmentLight, FlickerChance), METADATA_PARAMS(Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_FlickerChance_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_FlickerChance_MetaData)) };
@@ -208,9 +222,9 @@ void EmptyLinkFunctionForGeneratedCodeCPP_EnvironmentLight() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_EnvironmentLight_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACPP_EnvironmentLight, ACPP_EnvironmentLight::StaticClass, TEXT("ACPP_EnvironmentLight"), &Z_Registration_Info_UClass_ACPP_EnvironmentLight, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACPP_EnvironmentLight), 2199771667U) },
+		{ Z_Construct_UClass_ACPP_EnvironmentLight, ACPP_EnvironmentLight::StaticClass, TEXT("ACPP_EnvironmentLight"), &Z_Registration_Info_UClass_ACPP_EnvironmentLight, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACPP_EnvironmentLight), 193432730U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_EnvironmentLight_h_1759082900(TEXT("/Script/Triiodide_Interview"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_EnvironmentLight_h_2010810384(TEXT("/Script/Triiodide_Interview"),
 		Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_EnvironmentLight_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_EnvironmentLight_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
