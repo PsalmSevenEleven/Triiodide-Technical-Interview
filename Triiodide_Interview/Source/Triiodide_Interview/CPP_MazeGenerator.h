@@ -111,10 +111,13 @@ public:
 
 
 	//The Heirarchical Instanced Static Mesh components that handle the meshes in the maze
+	UPROPERTY(EditAnywhere)
 	UHierarchicalInstancedStaticMeshComponent* MazeFloors;
 
+	UPROPERTY(EditAnywhere)
 	UHierarchicalInstancedStaticMeshComponent* MazeCeilings;
 
+	UPROPERTY(EditAnywhere)
 	UHierarchicalInstancedStaticMeshComponent* MazeWalls;
 
 	

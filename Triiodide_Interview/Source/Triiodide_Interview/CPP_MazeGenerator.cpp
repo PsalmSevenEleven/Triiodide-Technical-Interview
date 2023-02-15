@@ -240,9 +240,11 @@ bool ACPP_MazeGenerator::GenerateMaze()
 //Constructing the actual maze meshes (floors, walls, etc.) from the information compiled in GenerateMaze()
 bool ACPP_MazeGenerator::BuildMeshes()
 {
+	
 	//If we can successfully generate a maze...
 	if (GenerateMaze())
 	{
+		
 		//...then for each cell in the maze array:
 		for (int i = 0; i < Maze.Num(); i++)
 		{

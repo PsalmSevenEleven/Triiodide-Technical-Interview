@@ -14,6 +14,7 @@ void EmptyLinkFunctionForGeneratedCodeCPP_EnvironmentLight() {}
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_Triiodide_Interview();
 	ENGINE_API UClass* Z_Construct_UClass_UPointLightComponent_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UAudioComponent_NoRegister();
 // End Cross Module References
 	DEFINE_FUNCTION(ACPP_EnvironmentLight::execStartFlickerCheckTimer)
 	{
@@ -100,6 +101,10 @@ void EmptyLinkFunctionForGeneratedCodeCPP_EnvironmentLight() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_Light;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_AudioComp_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_AudioComp;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_LightIntensity_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_LightIntensity;
@@ -144,6 +149,14 @@ void EmptyLinkFunctionForGeneratedCodeCPP_EnvironmentLight() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_Light = { "Light", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPP_EnvironmentLight, Light), Z_Construct_UClass_UPointLightComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_Light_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_Light_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_AudioComp_MetaData[] = {
+		{ "Category", "CPP_EnvironmentLight" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "CPP_EnvironmentLight.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_AudioComp = { "AudioComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPP_EnvironmentLight, AudioComp), Z_Construct_UClass_UAudioComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_AudioComp_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_AudioComp_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_LightIntensity_MetaData[] = {
 		{ "Category", "CPP_EnvironmentLight" },
 		{ "Comment", "//The intensity of the light, used in the flicker\n" },
@@ -181,6 +194,7 @@ void EmptyLinkFunctionForGeneratedCodeCPP_EnvironmentLight() {}
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_FlickerChance = { "FlickerChance", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPP_EnvironmentLight, FlickerChance), METADATA_PARAMS(Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_FlickerChance_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_FlickerChance_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ACPP_EnvironmentLight_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_Light,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_AudioComp,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_LightIntensity,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_FlickerCheckTime,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_EnvironmentLight_Statics::NewProp_FlickerMinMultiplier,
@@ -222,9 +236,9 @@ void EmptyLinkFunctionForGeneratedCodeCPP_EnvironmentLight() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_EnvironmentLight_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACPP_EnvironmentLight, ACPP_EnvironmentLight::StaticClass, TEXT("ACPP_EnvironmentLight"), &Z_Registration_Info_UClass_ACPP_EnvironmentLight, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACPP_EnvironmentLight), 193432730U) },
+		{ Z_Construct_UClass_ACPP_EnvironmentLight, ACPP_EnvironmentLight::StaticClass, TEXT("ACPP_EnvironmentLight"), &Z_Registration_Info_UClass_ACPP_EnvironmentLight, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACPP_EnvironmentLight), 909091089U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_EnvironmentLight_h_2010810384(TEXT("/Script/Triiodide_Interview"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_EnvironmentLight_h_493526007(TEXT("/Script/Triiodide_Interview"),
 		Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_EnvironmentLight_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_EnvironmentLight_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

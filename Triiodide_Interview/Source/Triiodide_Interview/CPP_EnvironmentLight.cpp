@@ -16,6 +16,9 @@ ACPP_EnvironmentLight::ACPP_EnvironmentLight()
 	Light = CreateDefaultSubobject<UPointLightComponent>("Light");
 	Light->SetupAttachment(RootComponent);
 
+	//Create the audio component
+	AudioComp = CreateDefaultSubobject<UAudioComponent>("Audio Component");
+	AudioComp->SetupAttachment(Light);
 }
 
 // Called when the game starts or when spawned

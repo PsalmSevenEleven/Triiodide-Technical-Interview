@@ -30,12 +30,21 @@ public:
 	UPROPERTY(EditAnywhere)
 		UCharacterMovementComponent* MovementComp;
 
+	//Footstep audio
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UAudioComponent* FootstepComp;
 
 	/*Control-related variables*/
 
 	//Amount to turn when given mouse input
 	UPROPERTY(EditAnywhere)
 		float MouseSensitivity;
+
+	//Time between footsteps
+	UPROPERTY(EditAnywhere)
+		float FootstepInterval;
+
+	FTimerHandle FootstepTimerHandle;
 
 	//Player's control rotation
 	UPROPERTY(Replicated)
@@ -64,4 +73,8 @@ public:
 	//Lets the server know where the player is looking
 	UFUNCTION(Server, Unreliable)
 		void ServerLook(FRotator Rot);
+
+	void StartFootstepTimer(bool Reset);
+
+	void StopFootstepTimer();
 };

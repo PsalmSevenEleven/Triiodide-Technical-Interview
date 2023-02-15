@@ -3,10 +3,13 @@
 
 #include "CPP_SurvivalCharacter.h"
 
+#include "Kismet/KismetMathLibrary.h"
+
 /*Components*/
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Components/AudioComponent.h"
 
 /*Enhanced Input*/
 #include "EnhancedInputComponent.h"
@@ -28,6 +31,10 @@ ACPP_SurvivalCharacter::ACPP_SurvivalCharacter()
 
 	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
 	Camera->SetupAttachment(CameraBoom);
+
+	//Create the audio component
+	FootstepComp = CreateDefaultSubobject<UAudioComponent>("Audio Component");
+	FootstepComp->SetupAttachment(RootComponent);
 
 	//I may add an option to change this later, should I have time
 	MouseSensitivity = 75.f;
@@ -55,6 +62,15 @@ void ACPP_SurvivalCharacter::Tick(float DeltaTime)
 	{
 		CameraBoom->SetWorldRotation(ControlRotation);
 		Controller->SetControlRotation(ControlRotation);
+	}
+
+	if (UKismetMathLibrary::VSize2D(FVector2D(GetVelocity().X, GetVelocity().Y)) > 1)
+	{
+		StartFootstepTimer(false);
+	}
+	else
+	{
+		StopFootstepTimer();
 	}
 }
 
@@ -106,6 +122,8 @@ void ACPP_SurvivalCharacter::Move(const FInputActionValue& ActionValue)
 {
 	FVector Input = ActionValue.Get<FInputActionValue::Axis3D>();
 	MovementComp->AddInputVector(GetActorRotation().RotateVector(Input));
+
+	
 }
 
 //Tells the player character what its ControlRotation variable should be
@@ -145,4 +163,28 @@ void ACPP_SurvivalCharacter::Look(const FInputActionValue& ActionValue)
 void ACPP_SurvivalCharacter::ServerLook_Implementation(FRotator Rot)
 {
 	ControlRotation = Rot;
+}
+
+void ACPP_SurvivalCharacter::StartFootstepTimer(bool Reset)
+{
+	static bool StartTimer = true;
+
+	if (Reset)
+	{
+		StartTimer = true;
+		return;
+	}
+
+	if (StartTimer)
+	{
+		GetWorld()->GetTimerManager().SetTimer(FootstepTimerHandle, FTimerDelegate::CreateLambda([&] {FootstepComp->Play(); }), FootstepInterval, true);
+		StartTimer = false;
+	}
+}
+
+void ACPP_SurvivalCharacter::StopFootstepTimer()
+{
+	FootstepComp->Play();
+	GetWorld()->GetTimerManager().ClearTimer(FootstepTimerHandle);
+	StartFootstepTimer(true);
 }

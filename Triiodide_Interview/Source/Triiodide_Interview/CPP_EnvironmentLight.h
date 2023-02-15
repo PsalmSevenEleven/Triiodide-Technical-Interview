@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Components/PointLightComponent.h"
 #include "Components/TimelineComponent.h"
+#include "Components/AudioComponent.h"
 #include "CPP_EnvironmentLight.generated.h"
 
 UCLASS()
@@ -20,6 +21,9 @@ public:
 	//The actual point light
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UPointLightComponent* Light;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UAudioComponent* AudioComp;
 
 	//The intensity of the light, used in the flicker
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
