@@ -110,6 +110,11 @@ public:
 		TSubclassOf<ACPP_EnvironmentLight> LightClass;
 
 
+	//The class of exit hatch to use in the level
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Escape Hatch")
+		TSubclassOf<class ACPP_ExitHatch> EscapeHatchClass;
+
+
 	//The Heirarchical Instanced Static Mesh components that handle the meshes in the maze
 	UPROPERTY(EditAnywhere)
 	UHierarchicalInstancedStaticMeshComponent* MazeFloors;

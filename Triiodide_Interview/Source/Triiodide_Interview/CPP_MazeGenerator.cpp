@@ -3,6 +3,8 @@
 
 #include "CPP_MazeGenerator.h"
 
+#include "CPP_ExitHatch.h"
+
 #include "Net/UnrealNetwork.h"
 
 // Sets default values
@@ -267,6 +269,7 @@ bool ACPP_MazeGenerator::BuildMeshes()
 			//Add in the lights if the area is not set for darkness
 			MeshLocation = FVector(((i % MazeWidth) * GridSize) + (GridSize / 2), ((i / MazeWidth) * GridSize) + (GridSize / 2), CeilingHeight);
 
+
 			//If we manage to exceed the threshold for spawning a light...
 			if (Stream.FRandRange(-1, 1) > DarknessOffset + FMath::PerlinNoise2D(
 				FVector2D(
@@ -300,14 +303,13 @@ bool ACPP_MazeGenerator::BuildMeshes()
 			//If there is no path to the south and we don't exclude the wall due to low claustrophobia in the area,
 			//OR if the cell is in the final row,
 			
-			if (!(Maze[i] & PATH_SOUTH) 
-				&& Stream.FRandRange(-1,1) > ClaustrophobiaOffset + FMath::PerlinNoise2D(
-					FVector2D(
+			if ((!(Maze[i] & PATH_SOUTH) && Stream.FRandRange(-1,1) > ClaustrophobiaOffset + FMath::PerlinNoise2D(FVector2D(
 						MeshLocation.X * ClaustrophobiaScale + 0.1,
 					MeshLocation.Y * ClaustrophobiaScale + 0.1
 						)
-					) 
-				|| (i / MazeWidth >= MazeHeight - 1)
+					)
+				)
+				||  (i / MazeWidth >= MazeHeight - 1)
 			)
 			{
 				//then add the wall.
@@ -322,14 +324,8 @@ bool ACPP_MazeGenerator::BuildMeshes()
 
 			//If there is no path to the west and we don't exclude the wall due to low claustrophobia in the area,
 			//OR if the cell is in the final column,
-			if (!(Maze[i] & PATH_WEST) 
-				&& Stream.FRandRange(-1, 1) > ClaustrophobiaOffset + FMath::PerlinNoise2D(
-					FVector2D(
-						MeshLocation.X * ClaustrophobiaScale + 0.1, 
-						MeshLocation.Y * ClaustrophobiaScale + 0.1
-					)
-				)
-				|| (i % MazeWidth == MazeWidth - 1)
+			if ((!(Maze[i] & PATH_WEST) && Stream.FRandRange(-1, 1) > ClaustrophobiaOffset + FMath::PerlinNoise2D(FVector2D(MeshLocation.X * ClaustrophobiaScale + 0.1, MeshLocation.Y * ClaustrophobiaScale + 0.1)))
+				|| (i % MazeWidth == MazeWidth -1)
 			)
 			{
 				//then add the wall.
@@ -347,7 +343,7 @@ bool ACPP_MazeGenerator::BuildMeshes()
 			//Now generate the northern and eastern edge walls that were missed by the earlier section
 
 			//If the cell is in the first row,
-			if (i % MazeHeight == 0)
+			if (i % MazeWidth == 0)
 			{
 				//then add the wall.
 				MeshLocation = FVector((i % MazeWidth) * GridSize, ((i / MazeWidth) * GridSize), 0);
@@ -358,10 +354,10 @@ bool ACPP_MazeGenerator::BuildMeshes()
 			}
 			
 			//If the cell is in the first column,
-			if (i % MazeWidth == 0)
+			if (i < MazeWidth)
 			{
 				//then add the wall.
-				MeshLocation = FVector(((i / MazeWidth) * GridSize), ((i % MazeWidth) * GridSize), 0);
+				MeshLocation = FVector(((i % MazeWidth) * GridSize), ((i / MazeWidth) * GridSize), 0);
 
 				MeshTransform = FTransform(FRotator(), MeshLocation, FVector(1));
 
@@ -369,6 +365,23 @@ bool ACPP_MazeGenerator::BuildMeshes()
 			}
 
 		}
+
+		//Find a random tile and place the end objective in the middle of it
+
+		FActorSpawnParameters SpawnParams = FActorSpawnParameters();
+
+		float HatchX = Stream.RandRange(1, MazeWidth - 1) * GridSize;
+		float HatchY = Stream.RandRange(1, MazeHeight - 1) * GridSize;
+
+		FVector HatchLocation = FVector(HatchX + 0.5 * GridSize, HatchY + 0.5 * GridSize, 0);
+		FTransform HatchTransform = FTransform(FRotator(), HatchLocation, FVector(1));
+
+		ACPP_ExitHatch* Hatch = GetWorld()->SpawnActor<ACPP_ExitHatch>(EscapeHatchClass, HatchTransform, SpawnParams);
+
+		//Tell the objective to place its 'keys' around the map.
+		//These keys could be generators, valves, switches, or some other interactible that will unlock the escape
+		Hatch->CreateKeys(this);
+
 
 		//If we successfully generated a maze earlier, then we can return true
 		return true;

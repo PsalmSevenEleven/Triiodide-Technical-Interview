@@ -7,23 +7,27 @@
 #include "UObject/GeneratedCppIncludes.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeTriiodide_Interview_init() {}
+	TRIIODIDE_INTERVIEW_API UFunction* Z_Construct_UDelegateFunction_Triiodide_Interview_KeyActivatedDelegate__DelegateSignature();
 	static FPackageRegistrationInfo Z_Registration_Info_UPackage__Script_Triiodide_Interview;
 	FORCENOINLINE UPackage* Z_Construct_UPackage__Script_Triiodide_Interview()
 	{
 		if (!Z_Registration_Info_UPackage__Script_Triiodide_Interview.OuterSingleton)
 		{
+			static UObject* (*const SingletonFuncArray[])() = {
+				(UObject* (*)())Z_Construct_UDelegateFunction_Triiodide_Interview_KeyActivatedDelegate__DelegateSignature,
+			};
 			static const UECodeGen_Private::FPackageParams PackageParams = {
 				"/Script/Triiodide_Interview",
-				nullptr,
-				0,
+				SingletonFuncArray,
+				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x0D6A317C,
-				0xFC4D966B,
+				0x9971BD7C,
+				0x3B5FF96E,
 				METADATA_PARAMS(nullptr, 0)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_Triiodide_Interview.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_Triiodide_Interview.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_Triiodide_Interview(Z_Construct_UPackage__Script_Triiodide_Interview, TEXT("/Script/Triiodide_Interview"), Z_Registration_Info_UPackage__Script_Triiodide_Interview, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x0D6A317C, 0xFC4D966B));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_Triiodide_Interview(Z_Construct_UPackage__Script_Triiodide_Interview, TEXT("/Script/Triiodide_Interview"), Z_Registration_Info_UPackage__Script_Triiodide_Interview, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x9971BD7C, 0x3B5FF96E));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

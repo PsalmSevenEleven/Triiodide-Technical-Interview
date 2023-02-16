@@ -44,6 +44,18 @@
     <ClInclude Include="..\..\Source\Triiodide_Interview\CPP_EnvironmentLight.h">
       <Filter>Source\Triiodide_Interview</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Triiodide_Interview\CPP_ExitHatch.cpp">
+      <Filter>Source\Triiodide_Interview</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Triiodide_Interview\CPP_ExitHatch.h">
+      <Filter>Source\Triiodide_Interview</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Triiodide_Interview\CPP_ExitKey.cpp">
+      <Filter>Source\Triiodide_Interview</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Triiodide_Interview\CPP_ExitKey.h">
+      <Filter>Source\Triiodide_Interview</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Triiodide_Interview\CPP_MazeCell.cpp">
       <Filter>Source\Triiodide_Interview</Filter>
     </ClCompile>

@@ -16,6 +16,7 @@ void EmptyLinkFunctionForGeneratedCodeCPP_MazeGenerator() {}
 	ENGINE_API UClass* Z_Construct_UClass_UStaticMesh_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	TRIIODIDE_INTERVIEW_API UClass* Z_Construct_UClass_ACPP_EnvironmentLight_NoRegister();
+	TRIIODIDE_INTERVIEW_API UClass* Z_Construct_UClass_ACPP_ExitHatch_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UHierarchicalInstancedStaticMeshComponent_NoRegister();
 // End Cross Module References
 	DEFINE_FUNCTION(ACPP_MazeGenerator::execOnRep_Seed)
@@ -130,6 +131,10 @@ void EmptyLinkFunctionForGeneratedCodeCPP_MazeGenerator() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_LightClass_MetaData[];
 #endif
 		static const UECodeGen_Private::FClassPropertyParams NewProp_LightClass;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_EscapeHatchClass_MetaData[];
+#endif
+		static const UECodeGen_Private::FClassPropertyParams NewProp_EscapeHatchClass;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_MazeFloors_MetaData[];
 #endif
@@ -296,6 +301,15 @@ void EmptyLinkFunctionForGeneratedCodeCPP_MazeGenerator() {}
 #endif
 	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ACPP_MazeGenerator_Statics::NewProp_LightClass = { "LightClass", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPP_MazeGenerator, LightClass), Z_Construct_UClass_ACPP_EnvironmentLight_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ACPP_MazeGenerator_Statics::NewProp_LightClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPP_MazeGenerator_Statics::NewProp_LightClass_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACPP_MazeGenerator_Statics::NewProp_EscapeHatchClass_MetaData[] = {
+		{ "Category", "Escape Hatch" },
+		{ "Comment", "//The class of exit hatch to use in the level\n" },
+		{ "ModuleRelativePath", "CPP_MazeGenerator.h" },
+		{ "ToolTip", "The class of exit hatch to use in the level" },
+	};
+#endif
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ACPP_MazeGenerator_Statics::NewProp_EscapeHatchClass = { "EscapeHatchClass", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPP_MazeGenerator, EscapeHatchClass), Z_Construct_UClass_ACPP_ExitHatch_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ACPP_MazeGenerator_Statics::NewProp_EscapeHatchClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPP_MazeGenerator_Statics::NewProp_EscapeHatchClass_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACPP_MazeGenerator_Statics::NewProp_MazeFloors_MetaData[] = {
 		{ "Category", "CPP_MazeGenerator" },
 		{ "Comment", "//The Heirarchical Instanced Static Mesh components that handle the meshes in the maze\n" },
@@ -346,6 +360,7 @@ void EmptyLinkFunctionForGeneratedCodeCPP_MazeGenerator() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_MazeGenerator_Statics::NewProp_MazeWallMesh,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_MazeGenerator_Statics::NewProp_MazeCeilingMesh,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_MazeGenerator_Statics::NewProp_LightClass,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_MazeGenerator_Statics::NewProp_EscapeHatchClass,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_MazeGenerator_Statics::NewProp_MazeFloors,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_MazeGenerator_Statics::NewProp_MazeCeilings,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_MazeGenerator_Statics::NewProp_MazeWalls,
@@ -397,9 +412,9 @@ void EmptyLinkFunctionForGeneratedCodeCPP_MazeGenerator() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_MazeGenerator_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACPP_MazeGenerator, ACPP_MazeGenerator::StaticClass, TEXT("ACPP_MazeGenerator"), &Z_Registration_Info_UClass_ACPP_MazeGenerator, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACPP_MazeGenerator), 2414732264U) },
+		{ Z_Construct_UClass_ACPP_MazeGenerator, ACPP_MazeGenerator::StaticClass, TEXT("ACPP_MazeGenerator"), &Z_Registration_Info_UClass_ACPP_MazeGenerator, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACPP_MazeGenerator), 291372227U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_MazeGenerator_h_4001729616(TEXT("/Script/Triiodide_Interview"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_MazeGenerator_h_2079697494(TEXT("/Script/Triiodide_Interview"),
 		Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_MazeGenerator_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_MazeGenerator_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
