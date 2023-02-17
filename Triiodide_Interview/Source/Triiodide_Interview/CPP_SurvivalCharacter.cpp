@@ -91,6 +91,8 @@ void ACPP_SurvivalCharacter::SetupPlayerInputComponent(UInputComponent* PlayerIn
 	{
 		EIC->BindAction(SPC->MoveAction, ETriggerEvent::Triggered, this, &ACPP_SurvivalCharacter::Move);
 		EIC->BindAction(SPC->MouseLookAction, ETriggerEvent::Triggered, this, &ACPP_SurvivalCharacter::Look);
+		EIC->BindAction(SPC->InteractAction, ETriggerEvent::Started, this, &ACPP_SurvivalCharacter::Interact);
+
 
 		ULocalPlayer* LocalPlayer = SPC->GetLocalPlayer();
 		if (LocalPlayer)
@@ -153,10 +155,37 @@ void ACPP_SurvivalCharacter::Look(const FInputActionValue& ActionValue)
 		//Replicate ControlRotation
 		ServerLook(Input);
 	}
-	else
+}
+
+void ACPP_SurvivalCharacter::Interact(const FInputActionValue& ActionValue)
+{
+	if (GetLocalRole() == ROLE_AutonomousProxy)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Orange, FString::SanitizeFloat(ControlRotation.Pitch));
+		ServerInteract();
 	}
+}
+
+void ACPP_SurvivalCharacter::ServerInteract_Implementation()
+{
+
+	FHitResult Hit;
+	FCollisionQueryParams Params;
+	GetWorld()->LineTraceSingleByChannel(Hit, Camera->GetComponentLocation(), Camera->GetComponentLocation() + Camera->GetForwardVector() * PlayerReach, ECC_Visibility, Params);
+
+
+
+	if (Hit.GetActor() && Hit.GetActor()->Implements<UCPP_InteractibleInterface>())
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Green, "Yeet");
+		ICPP_InteractibleInterface::Execute_Interact(Hit.GetActor());
+	}
+}
+
+	
+
+void ACPP_SurvivalCharacter::Use(const FInputActionValue& ActionValue)
+{
+
 }
 
 //Setting ControlRotation on the server

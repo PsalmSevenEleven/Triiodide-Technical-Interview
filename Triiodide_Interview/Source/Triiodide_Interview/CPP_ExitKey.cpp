@@ -3,12 +3,15 @@
 
 #include "CPP_ExitKey.h"
 
-
+#include "CPP_ExitHatch.h"
 // Sets default values
 ACPP_ExitKey::ACPP_ExitKey()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
+	PrimaryActorTick.bStartWithTickEnabled = false;
+
+	bReplicates = true;
 
 }
 
@@ -23,6 +26,10 @@ void ACPP_ExitKey::BeginPlay()
 void ACPP_ExitKey::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
 
+void ACPP_ExitKey::FinishActivation()
+{
+	ParentHatch->CompleteKey();
 }
 

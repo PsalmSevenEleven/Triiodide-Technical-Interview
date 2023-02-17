@@ -20,8 +20,18 @@ public:
 	UPROPERTY(EditAnywhere)
 		USkeletalMeshComponent* SkeletalMesh;
 
-	UPROPERTY(EditAnywhere)
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Keys")
+		int NumKeys;
+
+	UPROPERTY(EditAnywhere, Category = "Keys")
 		TSubclassOf<ACPP_ExitKey> ExitKeyClass;
+
+
+	int CompletedKeys;
+
+	int CurrentX;
+	int CurrentY;
 
 
 protected:
@@ -32,7 +42,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void CreateKeys(class ACPP_MazeGenerator* ParentGenerator);
+	void CreateKeys(int Seed, int Width, int Height, float GridSize);
+
+	void CompleteKey();
 
 	UFUNCTION(BlueprintImplementableEvent)
 		void Unlock();

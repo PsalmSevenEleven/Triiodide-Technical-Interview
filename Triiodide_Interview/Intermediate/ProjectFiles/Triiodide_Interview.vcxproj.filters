@@ -56,6 +56,12 @@
     <ClInclude Include="..\..\Source\Triiodide_Interview\CPP_ExitKey.h">
       <Filter>Source\Triiodide_Interview</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Triiodide_Interview\CPP_InteractibleInterface.cpp">
+      <Filter>Source\Triiodide_Interview</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Triiodide_Interview\CPP_InteractibleInterface.h">
+      <Filter>Source\Triiodide_Interview</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Triiodide_Interview\CPP_MazeCell.cpp">
       <Filter>Source\Triiodide_Interview</Filter>
     </ClCompile>

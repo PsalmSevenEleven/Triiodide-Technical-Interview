@@ -13,28 +13,32 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define TRIIODIDE_INTERVIEW_CPP_SurvivalCharacter_generated_h
 
-#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_SPARSE_DATA
-#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_RPC_WRAPPERS \
+#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_SPARSE_DATA
+#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_RPC_WRAPPERS \
 	virtual void ServerLook_Implementation(FRotator Rot); \
+	virtual void ServerInteract_Implementation(); \
  \
-	DECLARE_FUNCTION(execServerLook);
+	DECLARE_FUNCTION(execServerLook); \
+	DECLARE_FUNCTION(execServerInteract);
 
 
-#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
 	virtual void ServerLook_Implementation(FRotator Rot); \
+	virtual void ServerInteract_Implementation(); \
  \
-	DECLARE_FUNCTION(execServerLook);
+	DECLARE_FUNCTION(execServerLook); \
+	DECLARE_FUNCTION(execServerInteract);
 
 
-#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_EVENT_PARMS \
+#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_EVENT_PARMS \
 	struct CPP_SurvivalCharacter_eventServerLook_Parms \
 	{ \
 		FRotator Rot; \
 	};
 
 
-#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_CALLBACK_WRAPPERS
-#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_INCLASS_NO_PURE_DECLS \
+#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_CALLBACK_WRAPPERS
+#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesACPP_SurvivalCharacter(); \
 	friend struct Z_Construct_UClass_ACPP_SurvivalCharacter_Statics; \
@@ -50,7 +54,7 @@ public: \
 	NO_API virtual void ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const override;
 
 
-#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_INCLASS \
+#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_INCLASS \
 private: \
 	static void StaticRegisterNativesACPP_SurvivalCharacter(); \
 	friend struct Z_Construct_UClass_ACPP_SurvivalCharacter_Statics; \
@@ -66,7 +70,7 @@ public: \
 	NO_API virtual void ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const override;
 
 
-#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_STANDARD_CONSTRUCTORS \
+#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ACPP_SurvivalCharacter(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ACPP_SurvivalCharacter) \
@@ -79,7 +83,7 @@ private: \
 public:
 
 
-#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_ENHANCED_CONSTRUCTORS \
+#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ACPP_SurvivalCharacter(ACPP_SurvivalCharacter&&); \
@@ -90,30 +94,30 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ACPP_SurvivalCharacter)
 
 
-#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_9_PROLOG \
-	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_EVENT_PARMS
+#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_10_PROLOG \
+	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_EVENT_PARMS
 
 
-#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_GENERATED_BODY_LEGACY \
+#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_SPARSE_DATA \
-	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_RPC_WRAPPERS \
-	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_CALLBACK_WRAPPERS \
-	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_INCLASS \
-	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_STANDARD_CONSTRUCTORS \
+	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_SPARSE_DATA \
+	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_RPC_WRAPPERS \
+	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_CALLBACK_WRAPPERS \
+	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_INCLASS \
+	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_GENERATED_BODY \
+#define FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_SPARSE_DATA \
-	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_CALLBACK_WRAPPERS \
-	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_INCLASS_NO_PURE_DECLS \
-	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_12_ENHANCED_CONSTRUCTORS \
+	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_SPARSE_DATA \
+	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_CALLBACK_WRAPPERS \
+	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_INCLASS_NO_PURE_DECLS \
+	FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalCharacter_h_13_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

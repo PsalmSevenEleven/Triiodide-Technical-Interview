@@ -37,6 +37,13 @@ void EmptyLinkFunctionForGeneratedCodeCPP_ExitKey() {}
 		}
 		return ReturnFunction;
 	}
+	DEFINE_FUNCTION(ACPP_ExitKey::execFinishActivation)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->FinishActivation();
+		P_NATIVE_END;
+	}
 	static FName NAME_ACPP_ExitKey_StartActivation = FName(TEXT("StartActivation"));
 	void ACPP_ExitKey::StartActivation()
 	{
@@ -44,6 +51,33 @@ void EmptyLinkFunctionForGeneratedCodeCPP_ExitKey() {}
 	}
 	void ACPP_ExitKey::StaticRegisterNativesACPP_ExitKey()
 	{
+		UClass* Class = ACPP_ExitKey::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "FinishActivation", &ACPP_ExitKey::execFinishActivation },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_ACPP_ExitKey_FinishActivation_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACPP_ExitKey_FinishActivation_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "CPP_ExitKey.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACPP_ExitKey_FinishActivation_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACPP_ExitKey, nullptr, "FinishActivation", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACPP_ExitKey_FinishActivation_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACPP_ExitKey_FinishActivation_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ACPP_ExitKey_FinishActivation()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ACPP_ExitKey_FinishActivation_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_ACPP_ExitKey_StartActivation_Statics
 	{
@@ -87,6 +121,7 @@ void EmptyLinkFunctionForGeneratedCodeCPP_ExitKey() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_Triiodide_Interview,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ACPP_ExitKey_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_ACPP_ExitKey_FinishActivation, "FinishActivation" }, // 3846035319
 		{ &Z_Construct_UFunction_ACPP_ExitKey_StartActivation, "StartActivation" }, // 1685567243
 	};
 #if WITH_METADATA
@@ -131,9 +166,9 @@ void EmptyLinkFunctionForGeneratedCodeCPP_ExitKey() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_ExitKey_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACPP_ExitKey, ACPP_ExitKey::StaticClass, TEXT("ACPP_ExitKey"), &Z_Registration_Info_UClass_ACPP_ExitKey, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACPP_ExitKey), 1536083378U) },
+		{ Z_Construct_UClass_ACPP_ExitKey, ACPP_ExitKey::StaticClass, TEXT("ACPP_ExitKey"), &Z_Registration_Info_UClass_ACPP_ExitKey, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACPP_ExitKey), 820849274U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_ExitKey_h_360308900(TEXT("/Script/Triiodide_Interview"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_ExitKey_h_1237165729(TEXT("/Script/Triiodide_Interview"),
 		Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_ExitKey_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_ExitKey_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

@@ -52,5 +52,11 @@ void ACPP_SurvivalPlayerController::SetupInputComponent()
 	MouseLookAction->ValueType = EInputActionValueType::Axis3D;
 	MapKey(PawnMappingContext, MouseLookAction, EKeys::MouseY);
 	MapKey(PawnMappingContext, MouseLookAction, EKeys::MouseX, false, true);
+
+	InteractAction = NewObject<UInputAction>(this);
+	MapKey(PawnMappingContext, InteractAction, EKeys::LeftMouseButton);
+
+	UseAction = NewObject<UInputAction>(this);
+	MapKey(PawnMappingContext, UseAction, EKeys::RightMouseButton);
 }
 

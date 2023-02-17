@@ -64,6 +64,10 @@ void EmptyLinkFunctionForGeneratedCodeCPP_ExitHatch() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_SkeletalMesh;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_NumKeys_MetaData[];
+#endif
+		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_NumKeys;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ExitKeyClass_MetaData[];
 #endif
 		static const UECodeGen_Private::FClassPropertyParams NewProp_ExitKeyClass;
@@ -93,14 +97,22 @@ void EmptyLinkFunctionForGeneratedCodeCPP_ExitHatch() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACPP_ExitHatch_Statics::NewProp_SkeletalMesh = { "SkeletalMesh", nullptr, (EPropertyFlags)0x0010000000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPP_ExitHatch, SkeletalMesh), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACPP_ExitHatch_Statics::NewProp_SkeletalMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPP_ExitHatch_Statics::NewProp_SkeletalMesh_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACPP_ExitHatch_Statics::NewProp_NumKeys_MetaData[] = {
+		{ "Category", "Keys" },
+		{ "ModuleRelativePath", "CPP_ExitHatch.h" },
+	};
+#endif
+	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ACPP_ExitHatch_Statics::NewProp_NumKeys = { "NumKeys", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPP_ExitHatch, NumKeys), METADATA_PARAMS(Z_Construct_UClass_ACPP_ExitHatch_Statics::NewProp_NumKeys_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPP_ExitHatch_Statics::NewProp_NumKeys_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACPP_ExitHatch_Statics::NewProp_ExitKeyClass_MetaData[] = {
-		{ "Category", "CPP_ExitHatch" },
+		{ "Category", "Keys" },
 		{ "ModuleRelativePath", "CPP_ExitHatch.h" },
 	};
 #endif
 	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ACPP_ExitHatch_Statics::NewProp_ExitKeyClass = { "ExitKeyClass", nullptr, (EPropertyFlags)0x0014000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPP_ExitHatch, ExitKeyClass), Z_Construct_UClass_ACPP_ExitKey_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ACPP_ExitHatch_Statics::NewProp_ExitKeyClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPP_ExitHatch_Statics::NewProp_ExitKeyClass_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ACPP_ExitHatch_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_ExitHatch_Statics::NewProp_SkeletalMesh,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_ExitHatch_Statics::NewProp_NumKeys,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_ExitHatch_Statics::NewProp_ExitKeyClass,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ACPP_ExitHatch_Statics::StaticCppClassTypeInfo = {
@@ -139,9 +151,9 @@ void EmptyLinkFunctionForGeneratedCodeCPP_ExitHatch() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_ExitHatch_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACPP_ExitHatch, ACPP_ExitHatch::StaticClass, TEXT("ACPP_ExitHatch"), &Z_Registration_Info_UClass_ACPP_ExitHatch, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACPP_ExitHatch), 3700509931U) },
+		{ Z_Construct_UClass_ACPP_ExitHatch, ACPP_ExitHatch::StaticClass, TEXT("ACPP_ExitHatch"), &Z_Registration_Info_UClass_ACPP_ExitHatch, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACPP_ExitHatch), 1129329359U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_ExitHatch_h_1323531492(TEXT("/Script/Triiodide_Interview"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_ExitHatch_h_987892503(TEXT("/Script/Triiodide_Interview"),
 		Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_ExitHatch_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_ExitHatch_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "CPP_InteractibleInterface.h"
 #include "CPP_SurvivalCharacter.generated.h"
 
 UCLASS()
@@ -40,15 +41,20 @@ public:
 	UPROPERTY(EditAnywhere)
 		float MouseSensitivity;
 
+	//Player's control rotation
+	UPROPERTY(Replicated)
+		FRotator ControlRotation = FRotator();
+
+	//How far away the player can interact with objects
+	UPROPERTY(EditAnywhere)
+		float PlayerReach;
+
+
 	//Time between footsteps
 	UPROPERTY(EditAnywhere)
 		float FootstepInterval;
 
 	FTimerHandle FootstepTimerHandle;
-
-	//Player's control rotation
-	UPROPERTY(Replicated)
-		FRotator ControlRotation = FRotator();
 
 protected:
 	// Called when the game starts or when spawned
@@ -69,6 +75,15 @@ public:
 
 	//Handle mouse input
 	void Look(const struct FInputActionValue& ActionValue);
+
+	//Interact with objects
+	void Interact(const struct FInputActionValue& ActionValue);
+
+	UFUNCTION(Server, Reliable)
+		void ServerInteract();
+
+	//Use current object. In this case it's just the player's flashlight, but it could be expanded to be any tool.
+	void Use(const struct FInputActionValue& ActionValue);
 
 	//Lets the server know where the player is looking
 	UFUNCTION(Server, Unreliable)

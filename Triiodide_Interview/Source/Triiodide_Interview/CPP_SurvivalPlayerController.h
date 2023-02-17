@@ -27,4 +27,10 @@ public:
 	
 	UPROPERTY()
 		class UInputAction* MouseLookAction;
+
+	UPROPERTY()
+		class UInputAction* InteractAction;
+
+	UPROPERTY()
+		class UInputAction* UseAction;
 };

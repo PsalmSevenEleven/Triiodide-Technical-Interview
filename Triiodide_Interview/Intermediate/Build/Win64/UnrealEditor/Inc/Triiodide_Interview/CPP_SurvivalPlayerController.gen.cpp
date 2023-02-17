@@ -42,6 +42,14 @@ void EmptyLinkFunctionForGeneratedCodeCPP_SurvivalPlayerController() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_MouseLookAction_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_MouseLookAction;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_InteractAction_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_InteractAction;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UseAction_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_UseAction;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -76,10 +84,24 @@ void EmptyLinkFunctionForGeneratedCodeCPP_SurvivalPlayerController() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::NewProp_MouseLookAction = { "MouseLookAction", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPP_SurvivalPlayerController, MouseLookAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::NewProp_MouseLookAction_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::NewProp_MouseLookAction_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::NewProp_InteractAction_MetaData[] = {
+		{ "ModuleRelativePath", "CPP_SurvivalPlayerController.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::NewProp_InteractAction = { "InteractAction", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPP_SurvivalPlayerController, InteractAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::NewProp_InteractAction_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::NewProp_InteractAction_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::NewProp_UseAction_MetaData[] = {
+		{ "ModuleRelativePath", "CPP_SurvivalPlayerController.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::NewProp_UseAction = { "UseAction", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPP_SurvivalPlayerController, UseAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::NewProp_UseAction_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::NewProp_UseAction_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::NewProp_PawnMappingContext,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::NewProp_MoveAction,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::NewProp_MouseLookAction,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::NewProp_InteractAction,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::NewProp_UseAction,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ACPP_SurvivalPlayerController_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ACPP_SurvivalPlayerController>::IsAbstract,
@@ -117,9 +139,9 @@ void EmptyLinkFunctionForGeneratedCodeCPP_SurvivalPlayerController() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalPlayerController_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACPP_SurvivalPlayerController, ACPP_SurvivalPlayerController::StaticClass, TEXT("ACPP_SurvivalPlayerController"), &Z_Registration_Info_UClass_ACPP_SurvivalPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACPP_SurvivalPlayerController), 2573529843U) },
+		{ Z_Construct_UClass_ACPP_SurvivalPlayerController, ACPP_SurvivalPlayerController::StaticClass, TEXT("ACPP_SurvivalPlayerController"), &Z_Registration_Info_UClass_ACPP_SurvivalPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACPP_SurvivalPlayerController), 2361837685U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalPlayerController_h_2114475743(TEXT("/Script/Triiodide_Interview"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalPlayerController_h_3578695398(TEXT("/Script/Triiodide_Interview"),
 		Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalPlayerController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Triiodide_Interview_Source_Triiodide_Interview_CPP_SurvivalPlayerController_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

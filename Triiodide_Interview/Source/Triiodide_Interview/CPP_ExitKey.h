@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "CPP_InteractibleInterface.h"
 #include "CPP_ExitKey.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FKeyActivatedDelegate);
@@ -32,5 +33,6 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 		void StartActivation();
 
-	void FinishActivation();
+	UFUNCTION(BlueprintCallable)
+		void FinishActivation();
 };

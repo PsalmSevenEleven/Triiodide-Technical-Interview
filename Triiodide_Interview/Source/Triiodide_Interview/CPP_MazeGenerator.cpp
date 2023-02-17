@@ -366,21 +366,30 @@ bool ACPP_MazeGenerator::BuildMeshes()
 
 		}
 
-		//Find a random tile and place the end objective in the middle of it
+		if (GetLocalRole() == ROLE_Authority)
+		{
+			//Find a random tile and place the end objective in the middle of it
 
-		FActorSpawnParameters SpawnParams = FActorSpawnParameters();
+			FActorSpawnParameters SpawnParams = FActorSpawnParameters();
 
-		float HatchX = Stream.RandRange(1, MazeWidth - 1) * GridSize;
-		float HatchY = Stream.RandRange(1, MazeHeight - 1) * GridSize;
+			int HatchGridX = Stream.RandRange(1, MazeWidth - 1);
+			float HatchLocX = HatchGridX * GridSize;
 
-		FVector HatchLocation = FVector(HatchX + 0.5 * GridSize, HatchY + 0.5 * GridSize, 0);
-		FTransform HatchTransform = FTransform(FRotator(), HatchLocation, FVector(1));
+			int HatchGridY = Stream.RandRange(1, MazeHeight - 1);
+			float HatchLocY = HatchGridY * GridSize;
 
-		ACPP_ExitHatch* Hatch = GetWorld()->SpawnActor<ACPP_ExitHatch>(EscapeHatchClass, HatchTransform, SpawnParams);
+			FVector HatchLocation = FVector(HatchLocX + 0.5 * GridSize, HatchLocY + 0.5 * GridSize, 0);
+			FTransform HatchTransform = FTransform(FRotator(), HatchLocation, FVector(1));
 
-		//Tell the objective to place its 'keys' around the map.
-		//These keys could be generators, valves, switches, or some other interactible that will unlock the escape
-		Hatch->CreateKeys(this);
+			ACPP_ExitHatch* Hatch = GetWorld()->SpawnActor<ACPP_ExitHatch>(EscapeHatchClass, HatchTransform, SpawnParams);
+
+			Hatch->CurrentX = HatchGridX;
+			Hatch->CurrentY = HatchGridY;
+
+			//Tell the objective to place its 'keys' around the map.
+			//These keys could be generators, valves, switches, or some other interactible that will unlock the escape
+			Hatch->CreateKeys(Stream.GetCurrentSeed(), MazeWidth, MazeHeight, GridSize);
+		}
 
 
 		//If we successfully generated a maze earlier, then we can return true
