@@ -366,9 +366,10 @@ bool ACPP_MazeGenerator::BuildMeshes()
 
 		}
 
+		//This only needs to happen on the server because ExitHatch objects are replicated
 		if (GetLocalRole() == ROLE_Authority)
 		{
-			//Find a random tile and place the end objective in the middle of it
+			//Find a random tile (excluding the spawn tile) and place the end objective in the middle of it
 
 			FActorSpawnParameters SpawnParams = FActorSpawnParameters();
 
@@ -387,7 +388,7 @@ bool ACPP_MazeGenerator::BuildMeshes()
 			Hatch->CurrentY = HatchGridY;
 
 			//Tell the objective to place its 'keys' around the map.
-			//These keys could be generators, valves, switches, or some other interactible that will unlock the escape
+			//These keys could be generators, valves, switches, or some other interactible that will unlock the elevel's objective
 			Hatch->CreateKeys(Stream.GetCurrentSeed(), MazeWidth, MazeHeight, GridSize);
 		}
 

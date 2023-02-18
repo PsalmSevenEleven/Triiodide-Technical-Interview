@@ -17,19 +17,18 @@ public:
 	// Sets default values for this actor's properties
 	ACPP_ExitHatch();
 
-	UPROPERTY(EditAnywhere)
-		USkeletalMeshComponent* SkeletalMesh;
-
-
+	//Number of keys to generate
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Keys")
 		int NumKeys;
 
+	//Kind of key to generate
 	UPROPERTY(EditAnywhere, Category = "Keys")
 		TSubclassOf<ACPP_ExitKey> ExitKeyClass;
 
 
 	int CompletedKeys;
 
+	//These store the current cell coords for the ExitHatch so that when it generates the keys, it can exclude its own cell
 	int CurrentX;
 	int CurrentY;
 
@@ -42,10 +41,15 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	//Generates the 'keys' that will activate the end objective
 	void CreateKeys(int Seed, int Width, int Height, float GridSize);
 
+	//Called by the keys when activated
 	void CompleteKey();
 
+	//Called when all of the keys have been activated
+	//It's a BlueprintImplementableEvent because what the end objective does is pretty vague. 
+	//It could be a door opening, a water level rising, a monster trap activating, etc.
 	UFUNCTION(BlueprintImplementableEvent)
 		void Unlock();
 

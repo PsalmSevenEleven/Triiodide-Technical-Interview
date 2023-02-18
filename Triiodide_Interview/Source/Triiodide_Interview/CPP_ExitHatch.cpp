@@ -7,14 +7,11 @@
 // Sets default values
 ACPP_ExitHatch::ACPP_ExitHatch()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	//No need to tick, but we will need replication
 	PrimaryActorTick.bCanEverTick = false;
 	PrimaryActorTick.bStartWithTickEnabled = false;
 
 	bReplicates = true;
-
-	SkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>("Skeletal Mesh");
-	SkeletalMesh->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
@@ -30,17 +27,22 @@ void ACPP_ExitHatch::Tick(float DeltaTime)
 
 }
 
+
+//Create the keys to activate the end objective
 void ACPP_ExitHatch::CreateKeys(int Seed, int Width, int Height, float GridSize)
 {
+	//We only need to do this on the server
 	if (GetLocalRole() == ROLE_Authority)
 	{
-		int Num = GetWorld()->GetGameState()->PlayerArray.Num();
-
+		//Make a stream from the one we've been using for everything else
 		FRandomStream Stream = FRandomStream(Seed);
+
 
 		//What follows is a multi-exclusion version of a neat algorithm I found for grabbing a random integer from a range while excluding one in particular
 		//Here's a link: https://stackoverflow.com/questions/34182699/random-integer-in-a-certain-range-excluding-one-number
 
+
+		//Lists of excluded coordinates
 		TArray<int> ExcludedX;
 		TArray<int> ExcludedY;
 
