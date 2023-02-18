@@ -83,7 +83,7 @@ public:
 		void ServerInteract();
 
 	//Use current object. In this case it's just the player's flashlight, but it could be expanded to be any tool.
-	void Use(const struct FInputActionValue& ActionValue);
+	virtual void Use(const struct FInputActionValue& ActionValue);
 
 	//Lets the server know where the player is looking
 	UFUNCTION(Server, Unreliable)
